@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Riverbook</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/rbcommon.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>		
+		<script src="../js/riverinfoController.js"></script>		
+	</head>
+<body>
+	<div ng-app="riverbook" ng-controller="riverinfoController">
+		<h2> Welcome {{rbusername}} </h2>
+		<p>River Name: </p>
+		<input type="text" id="rbriverName" ng-model="rbriverName"/>
+		<p>River Location: </p>
+		<input type="password" id="rbriverLocation" ng-model="rbriverLocation"/>		
+		
+		<p>Issues: </p>
+		<input type="checkbox">Exploitation<br>
+		<input type="checkbox">Encroachment<br>
+		<input type="checkbox">Pollution
+		<p>Severity: </p>
+		
+		<input type="radio" ng-model="severity" value="low">Low
+	    <input type="radio" ng-model="severity" value="medium">Medium
+	    <input type="radio" ng-model="severity" value="high">High
+		
+		<div class="button-continer">
+			<button ng-click="saveRiverInfo()"> Submit </button>
+		</div>
+	</div>
+
+</body>
+</html>
