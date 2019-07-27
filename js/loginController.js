@@ -6,6 +6,6 @@ app.controller('loginController', function($scope) {
 	
 	$scope.userLogin = function(){
 		localStorage.setItem("rbusername", $scope.rbusername);
-		window.location = "../views/riverinfo.html";		
+		window.location = "views/riverinfo.html";		
 	}
 });
