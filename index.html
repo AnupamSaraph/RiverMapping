@@ -34,11 +34,12 @@
 		<input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
         <button ng-click="getLocation()">Get current location</button>
 		<textarea id="rbriverLocationAuto">{{rbriverLocationAuto}}</textarea>
+        <div id="mapholder" ng-bind-html="rbusermap"></div>
         
 		<p>Issues: </p>
-		<input type="checkbox">Exploitation<br>
-		<input type="checkbox">Encroachment<br>
-		<input type="checkbox">Pollution
+		<input type="checkbox" ng-model="exploitation">Exploitation<br>
+		<input type="checkbox" ng-model="encroachment">Encroachment<br>
+		<input type="checkbox" ng-model="pollution">Pollution
 		<p>Severity: </p>
 		
 		<input type="radio" ng-model="severity" value="low">Low
@@ -48,6 +49,11 @@
 		<div class="button-continer">
 			<button ng-click="saveRiverInfo()"> Submit </button>
 		</div>
+        
+        <button ng-click="getAllRivers()"> Rivers </button>
+        <div>
+            <p ng-repeat="river in allRivers.rivers">{{river.name}}</p>
+        </div>
 	</div>
 </body>
 </html>

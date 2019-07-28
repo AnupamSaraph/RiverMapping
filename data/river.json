@@ -1,0 +1,16 @@
+{
+    "river":[
+        {
+            "name": "Bheema",
+            "state":"Maharashtra",
+            "district":"Pune"
+        },
+        {
+            "name": "Indrayani",
+            "state":"Maharashtra",
+            "district":"Pune"
+        }
+             
+        
+    ]
+}
