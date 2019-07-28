@@ -32,27 +32,21 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
                     "name": "Bheema",
                     "state": "Maharashtra",
                     "city": "Pune",
-                    "issues": [{
-                        "issue": "Encroachment",
-                        "severity": "Low"
-                    },
-                    {
-                        "issue": "Encroachment",
-                        "severity": "Medium"   
-                    }]
+                    "encroachment": "1",
+                    "encroachmentLevel": 'low',
+                    "exploitation": "2",
+                    "exploitationLevel": 'medium',
+                    "status": "orange"
                 },
                 {
                     "name": "Indrayani",
                     "state": "Maharashtra",
                     "city": "Pune",
-                    "issues": [{
-                        "issue": "Pollution",
-                        "severity": "High"
-                    },
-                    {
-                        "issue": "Encroachment",
-                        "severity": "low"   
-                    }]
+                    "pollution": "3",
+                    "pollutionLevel": 'high',
+                    "encroachment": "1",
+                    "encroachmentLevel": 'low',
+                    "status": "red"
                 },
             ]
     }
@@ -62,21 +56,45 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
         newRiverData.state = $scope.rbriverLocation;
         newRiverData.issues = [];
         var newIssue = {};
+        var rbseverityLevel;
+        /* start issue type and severity */
         if($scope.exploitation){
-            newIssue.issue = "Exploitation";
-            newIssue.severity = $scope.ExSeverity;
+            /* newIssue.issue = "Exploitation";
+            newIssue.severity = $scope.ExSeverity;*/
+            
+            rbseverityLevel = "$scope.ExSeverity == 1 ? 'low' : $scope.ExSeverity == 2 ? 'medium' : 'high'";
+            newIssue = {"exploitation": $scope.ExSeverity,
+                       "exploitationLevel": rbseverityLevel};
             newRiverData.issues.push(newIssue);
         }
         if($scope.encroachment){
-            newIssue.issue = "Encroachment";
-            newIssue.severity = $scope.EnSeverity;
+           /* newIssue.issue = "Encroachment";
+            newIssue.severity = $scope.EnSeverity;*/
+            rbseverityLevel = "$scope.EnSeverity == 1 ? 'low' : $scope.EnSeverity == 2 ? 'medium' : 'high'";
+            newIssue = {"encroachment": $scope.EnSeverity,
+                       "encroachmentLevel": rbseverityLevel};            
             newRiverData.issues.push(newIssue);
         }
         if($scope.pollution){
-            newIssue.issue = "Pollution";
-            newIssue.severity = $scope.PlSeverity;
+           /* newIssue.issue = "Pollution";
+            newIssue.severity = $scope.PlSeverity;*/
+            rbseverityLevel = "$scope.PlSeverity == 1 ? 'low' : $scope.PlSeverity == 2 ? 'medium' : 'high'";
+            newIssue = {"pollution": $scope.PlSeverity,
+                       "pollutionLevel": rbseverityLevel};            
             newRiverData.issues.push(newIssue);
         }
+        /* end issue type and severity */
+        
+        /* start status */
+        if($scope.ExSeverity == 3 || $scope.EnSeverity == 3 || $scope.PlSeverity == 3){
+            newRiverData.status = "red";
+        }else if($scope.ExSeverity == 2 || $scope.EnSeverity == 2 || $scope.PlSeverity == 2){
+                 newRiverData.status = "orange";
+              }else if($scope.ExSeverity == 1 || $scope.EnSeverity == 1 || $scope.PlSeverity == 1){
+                 newRiverData.status = "green";
+              }
+        /* end status */
+        
         
         
         $scope.allRivers.rivers.push(newRiverData);

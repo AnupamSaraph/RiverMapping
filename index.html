@@ -50,26 +50,48 @@
             </div>
             <div class="col-lg-5">
                 <p>Severity: </p>		
-                <input type="radio" ng-model="ExSeverity" value="low">Low
-                <input type="radio" ng-model="ExSeverity" value="medium">Medium
-                <input type="radio" ng-model="ExSeverity" value="high">High<br>
+                <input type="radio" ng-model="ExSeverity" value="1">Low
+                <input type="radio" ng-model="ExSeverity" value="2">Medium
+                <input type="radio" ng-model="ExSeverity" value="3">High<br>
                 
-                <input type="radio" ng-model="EnSeverity" value="low">Low
-                <input type="radio" ng-model="EnSeverity" value="medium">Medium
-                <input type="radio" ng-model="EnSeverity" value="high">High<br>
+                <input type="radio" ng-model="EnSeverity" value="1">Low
+                <input type="radio" ng-model="EnSeverity" value="2">Medium
+                <input type="radio" ng-model="EnSeverity" value="3">High<br>
                 
-                <input type="radio" ng-model="PlSeverity" value="low">Low
-                <input type="radio" ng-model="PlSeverity" value="medium">Medium
-                <input type="radio" ng-model="PlSeverity" value="high">High
+                <input type="radio" ng-model="PlSeverity" value="1">Low
+                <input type="radio" ng-model="PlSeverity" value="2">Medium
+                <input type="radio" ng-model="PlSeverity" value="3">High
             </div>
         </div>
 		<div class="row">
             <div class="col-lg-offset-1 col-lg-5">
                 <div class="button-continer">
                     <button ng-click="saveRiverInfo()"> Submit </button>
-                </div>            
-                <p ng-repeat="river in allRivers.rivers">{{river.name}}</p>
+                </div>
             </div>
+        </div>
+        <div class="row rball-rivers-table-header">
+            <div class="col-lg-offset-1 rbtableHeader">All Rivers Summary</div>            
+        </div>
+        <div class="row rball-rivers-table">
+            <div class="col-lg-offset-1 col-lg-2 rbtableHeader">Name</div>
+            <div class="col-lg-2 rbtableHeader">State</div>
+            <div class="col-lg-1 rbtableHeader">Exploitation</div>
+            <div class="col-lg-1 rbtableHeader">Encroachment</div>
+            <div class="col-lg-1 rbtableHeader">Pollution</div>
+            <div class="col-lg-3 rbtableHeader">Overall Status</div>
+        </div>
+        <div ng-repeat="river in allRivers.rivers" class="row rbriverRow">
+            <div class="col-lg-offset-1 col-lg-2">{{river.name}}</div>
+            <div class="col-lg-2">{{river.state}}</div>
+            <div class="col-lg-1">{{river.exploitationLevel}}</div>
+            <div class="col-lg-1">{{river.encroachmentLevel}}</div>
+            <div class="col-lg-1">{{river.pollutionLevel}}</div>
+            <div class="col-lg-3 rbstatus rbstatusRed" ng-if="river.status == 'red'"></div>
+            <div class="col-lg-3 rbstatus rbstatusOrange" ng-if="river.status == 'orange'"></div>
+            <div class="col-lg-3 rbstatus rbstatusGreen" ng-if="river.status == 'green'"></div>
+            <div class="col-lg-3 rbstatus rbstatusUnknown" ng-if="river.status == ''"></div>
+            
         </div>
 	</div>
 </body>

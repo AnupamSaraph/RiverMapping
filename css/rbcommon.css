@@ -5,3 +5,33 @@
 .button-continer{
 	margin-top: 10px;
 }
+.rball-rivers-table{
+    
+    
+}
+.rbtableHeader{
+    color: aquamarine;
+}
+.rball-rivers-table-header{
+    font-size: 24px;
+    color: orange;
+    margin-top: 20px;
+}
+.rbstatus{
+    height: 30px;
+}
+.rbstatusRed{
+    background-color: red;
+}
+.rbstatusOrange{
+    background-color: orange;
+}
+.rbstatusGreen{
+    background-color: green;
+}
+.rbstatusUnknown{
+    background-color: grey;
+}
+.rbriverRow{
+    margin-bottom: 10px;
+}
