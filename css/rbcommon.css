@@ -35,3 +35,11 @@
 .rbriverRow{
     margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 600px){
+    .rbriverRow > div{
+        padding-left: 0px;
+        padding-right: 0px;
+        border-right: 1px solid aquamarine;
+    }
+}

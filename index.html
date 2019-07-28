@@ -74,23 +74,23 @@
             <div class="col-lg-offset-1 rbtableHeader">All Rivers Summary</div>            
         </div>
         <div class="row rball-rivers-table">
-            <div class="col-lg-offset-1 col-lg-2 rbtableHeader">Name</div>
-            <div class="col-lg-2 rbtableHeader">State</div>
-            <div class="col-lg-1 rbtableHeader">Exploitation</div>
-            <div class="col-lg-1 rbtableHeader">Encroachment</div>
-            <div class="col-lg-1 rbtableHeader">Pollution</div>
-            <div class="col-lg-3 rbtableHeader">Overall Status</div>
+            <div class="col-lg-offset-1 col-lg-2 hidden-xs col-xs-3 rbtableHeader">Name</div>
+            <div class="col-lg-2 col-xs-4 hidden-xs rbtableHeader">State</div>
+            <div class="col-lg-1 col-xs-1 hidden-xs rbtableHeader">Exploitation</div>
+            <div class="col-lg-1 col-xs-1 hidden-xs rbtableHeader">Encroachment</div>
+            <div class="col-lg-1 col-xs-1 hidden-xs rbtableHeader">Pollution</div>
+            <div class="col-lg-3 col-sx-1 hidden-xs rbtableHeader">Overall Status</div>
         </div>
         <div ng-repeat="river in allRivers.rivers" class="row rbriverRow">
-            <div class="col-lg-offset-1 col-lg-2">{{river.name}}</div>
-            <div class="col-lg-2">{{river.state}}</div>
-            <div class="col-lg-1">{{river.exploitationLevel}}</div>
-            <div class="col-lg-1">{{river.encroachmentLevel}}</div>
-            <div class="col-lg-1">{{river.pollutionLevel}}</div>
-            <div class="col-lg-3 rbstatus rbstatusRed" ng-if="river.status == 'red'"></div>
-            <div class="col-lg-3 rbstatus rbstatusOrange" ng-if="river.status == 'orange'"></div>
-            <div class="col-lg-3 rbstatus rbstatusGreen" ng-if="river.status == 'green'"></div>
-            <div class="col-lg-3 rbstatus rbstatusUnknown" ng-if="river.status == ''"></div>
+            <div class="col-lg-offset-1 col-lg-2 col-xs-3">{{river.name}}</div>
+            <div class="col-lg-2 hidden-xs col-xs-4">{{river.state}}</div>
+            <div class="col-lg-1 col-xs-2">{{river.exploitationLevel}}</div>
+            <div class="col-lg-1 col-xs-2">{{river.encroachmentLevel}}</div>
+            <div class="col-lg-1 col-xs-2">{{river.pollutionLevel}}</div>
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusRed" ng-if="river.status == 'red'"></div>
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusOrange" ng-if="river.status == 'orange'"></div>
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusGreen" ng-if="river.status == 'green'"></div>
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusUnknown" ng-if="river.status == ''"></div>
             
         </div>
 	</div>
