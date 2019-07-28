@@ -26,33 +26,50 @@
 			<button ng-click="userLogin()"> Login </button>
 		</div>
 	</div>
-    <div ng-controller="RiverinfoController" ng-show="showRiverForm == true">
-		<h2> Welcome {{rbusername}} </h2>
-		<p>River Name: </p>
-		<input type="text" id="rbriverName" ng-model="rbriverName"/>
-		<p>River Location: </p>
-		<input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
-        <button ng-click="getLocation()">Get current location</button>
-		<textarea id="rbriverLocationAuto">{{rbriverLocationAuto}}</textarea>
-        <div id="mapholder" ng-bind-html="rbusermap"></div>
+    <div ng-controller="RiverinfoController" ng-show="showRiverForm == true" class="rbRiversContainer">
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-5">
+                <h2> Welcome {{rbusername}} </h2>
+                <p>River Name: </p>
+                <input type="text" id="rbriverName" ng-model="rbriverName"/>
+                <p>River Location: </p>
+                <input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
+                <button ng-click="getLocation()">Get current location</button>
+                <textarea id="rbriverLocationAuto">{{rbriverLocationAuto}}</textarea>
+                <div id="mapholder" ng-bind-html="rbusermap"></div>
+            </div>
+        </div>
         
-		<p>Issues: </p>
-		<input type="checkbox" ng-model="exploitation">Exploitation<br>
-		<input type="checkbox" ng-model="encroachment">Encroachment<br>
-		<input type="checkbox" ng-model="pollution">Pollution
-		<p>Severity: </p>
-		
-		<input type="radio" ng-model="severity" value="low">Low
-	    <input type="radio" ng-model="severity" value="medium">Medium
-	    <input type="radio" ng-model="severity" value="high">High
-		
-		<div class="button-continer">
-			<button ng-click="saveRiverInfo()"> Submit </button>
-		</div>
         
-        <button ng-click="getAllRivers()"> Rivers </button>
-        <div>
-            <p ng-repeat="river in allRivers.rivers">{{river.name}}</p>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-5">
+                <p>Issues: </p>
+                <input type="checkbox" ng-model="exploitation">Exploitation<br>
+                <input type="checkbox" ng-model="encroachment">Encroachment<br>
+                <input type="checkbox" ng-model="pollution">Pollution
+            </div>
+            <div class="col-lg-5">
+                <p>Severity: </p>		
+                <input type="radio" ng-model="ExSeverity" value="low">Low
+                <input type="radio" ng-model="ExSeverity" value="medium">Medium
+                <input type="radio" ng-model="ExSeverity" value="high">High<br>
+                
+                <input type="radio" ng-model="EnSeverity" value="low">Low
+                <input type="radio" ng-model="EnSeverity" value="medium">Medium
+                <input type="radio" ng-model="EnSeverity" value="high">High<br>
+                
+                <input type="radio" ng-model="PlSeverity" value="low">Low
+                <input type="radio" ng-model="PlSeverity" value="medium">Medium
+                <input type="radio" ng-model="PlSeverity" value="high">High
+            </div>
+        </div>
+		<div class="row">
+            <div class="col-lg-offset-1 col-lg-5">
+                <div class="button-continer">
+                    <button ng-click="saveRiverInfo()"> Submit </button>
+                </div>            
+                <p ng-repeat="river in allRivers.rivers">{{river.name}}</p>
+            </div>
         </div>
 	</div>
 </body>

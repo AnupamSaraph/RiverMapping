@@ -30,34 +30,55 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
             "rivers":[
                 {
                     "name": "Bheema",
-                    "state":"Maharashtra",
-                    "city":"Pune",
-                    "issues":"['Encroachment','Encroachment']",
-                    "severity":"low"
+                    "state": "Maharashtra",
+                    "city": "Pune",
+                    "issues": [{
+                        "issue": "Encroachment",
+                        "severity": "Low"
+                    },
+                    {
+                        "issue": "Encroachment",
+                        "severity": "Medium"   
+                    }]
                 },
                 {
                     "name": "Indrayani",
-                    "state":"Maharashtra",
-                    "city":"Pune",
-                    "issues":"['Pollution','Encroachment']"
-                }
+                    "state": "Maharashtra",
+                    "city": "Pune",
+                    "issues": [{
+                        "issue": "Pollution",
+                        "severity": "High"
+                    },
+                    {
+                        "issue": "Encroachment",
+                        "severity": "low"   
+                    }]
+                },
             ]
-        }
+    }
 	$scope.saveRiverInfo = function(){
         var newRiverData = {};
         newRiverData.name = $scope.rbriverName;
         newRiverData.state = $scope.rbriverLocation;
         newRiverData.issues = [];
+        var newIssue = {};
         if($scope.exploitation){
-           newRiverData.issues.push("Exploitation");
+            newIssue.issue = "Exploitation";
+            newIssue.severity = $scope.ExSeverity;
+            newRiverData.issues.push(newIssue);
         }
         if($scope.encroachment){
-           newRiverData.issues.push("Encroachment");
+            newIssue.issue = "Encroachment";
+            newIssue.severity = $scope.EnSeverity;
+            newRiverData.issues.push(newIssue);
         }
         if($scope.pollution){
-           newRiverData.issues.push("Pollution");
+            newIssue.issue = "Pollution";
+            newIssue.severity = $scope.PlSeverity;
+            newRiverData.issues.push(newIssue);
         }
-        newRiverData.severity = $scope.severity;
+        
+        
         $scope.allRivers.rivers.push(newRiverData);
         console.log("$scope.newRiverData.." + JSON.stringify(newRiverData));
 	}
