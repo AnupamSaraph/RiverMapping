@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="riverbook">
 	<head>
 		<title>Riverbook</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/rbcommon.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>		
-		<script src="js/loginController.js"></script>		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular.min.js"></script>		
+		<script src="app.js"></script>
+        
 	</head>
 <body>
-	<div ng-app="riverbook" ng-controller="loginController">
+	<div ng-controller="LoginController" ng-show="showLoginForm == true">
 		<div class="col-lg-12 userinput">
 			<p>User Name:</p>
-			<input type="text" id="rbusername"ng-model="rbusername"/>
+			<input type="text" id="rbusername" ng-model="rbusername"/>
 		</div>
 		<div class="col-lg-12 userinput">
 			<p>Password:</p>
@@ -23,6 +24,29 @@
 		</div>
 		<div class="col-lg-12 userinput button-continer">
 			<button ng-click="userLogin()"> Login </button>
+		</div>
+	</div>
+    <div ng-controller="RiverinfoController" ng-show="showRiverForm == true">
+		<h2> Welcome {{rbusername}} </h2>
+		<p>River Name: </p>
+		<input type="text" id="rbriverName" ng-model="rbriverName"/>
+		<p>River Location: </p>
+		<input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
+        <button ng-click="getLocation()">Get current location</button>
+		<textarea id="rbriverLocationAuto">{{rbriverLocationAuto}}</textarea>
+        
+		<p>Issues: </p>
+		<input type="checkbox">Exploitation<br>
+		<input type="checkbox">Encroachment<br>
+		<input type="checkbox">Pollution
+		<p>Severity: </p>
+		
+		<input type="radio" ng-model="severity" value="low">Low
+	    <input type="radio" ng-model="severity" value="medium">Medium
+	    <input type="radio" ng-model="severity" value="high">High
+		
+		<div class="button-continer">
+			<button ng-click="saveRiverInfo()"> Submit </button>
 		</div>
 	</div>
 </body>

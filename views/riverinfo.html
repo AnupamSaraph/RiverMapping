@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="riverbook">
 	<head>
 		<title>Riverbook</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../css/rbcommon.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>		
-		<script src="../js/riverinfoController.js"></script>		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/rbcommon.css">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular.min.js"></script>		
+		<script src="js/riverinfoController.js"></script>		
 	</head>
 <body>
-	<div ng-app="riverbook" ng-controller="riverinfoController">
+	<div ng-controller="riverinfoController">
 		<h2> Welcome {{rbusername}} </h2>
 		<p>River Name: </p>
 		<input type="text" id="rbriverName" ng-model="rbriverName"/>
 		<p>River Location: </p>
-		<input type="password" id="rbriverLocation" ng-model="rbriverLocation"/>		
-		
+		<input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
+        <button ng-click="getLocation()">Get current location</button>
+		<textarea id="rbriverLocationAuto">helloooooooooooooo {{rbriverLocationAuto}}</textarea>
+        
 		<p>Issues: </p>
 		<input type="checkbox">Exploitation<br>
 		<input type="checkbox">Encroachment<br>
