@@ -55,33 +55,23 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
         newRiverData.name = $scope.rbriverName;
         newRiverData.state = $scope.rbriverLocation;
         newRiverData.issues = [];
-        var newIssue = {};
+        
         var rbseverityLevel;
         /* start issue type and severity */
         if($scope.exploitation){
-            /* newIssue.issue = "Exploitation";
-            newIssue.severity = $scope.ExSeverity;*/
-            
-            rbseverityLevel = "$scope.ExSeverity == 1 ? 'low' : $scope.ExSeverity == 2 ? 'medium' : 'high'";
-            newIssue = {"exploitation": $scope.ExSeverity,
-                       "exploitationLevel": rbseverityLevel};
-            newRiverData.issues.push(newIssue);
+            rbseverityLevel = $scope.ExSeverity == 1 ? 'low' : $scope.ExSeverity == 2 ? 'medium' : 'high';            
+            newRiverData.exploitation = $scope.ExSeverity;
+            newRiverData.exploitationLevel = rbseverityLevel;
         }
         if($scope.encroachment){
-           /* newIssue.issue = "Encroachment";
-            newIssue.severity = $scope.EnSeverity;*/
-            rbseverityLevel = "$scope.EnSeverity == 1 ? 'low' : $scope.EnSeverity == 2 ? 'medium' : 'high'";
-            newIssue = {"encroachment": $scope.EnSeverity,
-                       "encroachmentLevel": rbseverityLevel};            
-            newRiverData.issues.push(newIssue);
+            rbseverityLevel = $scope.EnSeverity == 1 ? 'low' : $scope.EnSeverity == 2 ? 'medium' : 'high';
+            newRiverData.encroachment = $scope.EnSeverity;
+            newRiverData.encroachmentLevel = rbseverityLevel;
         }
         if($scope.pollution){
-           /* newIssue.issue = "Pollution";
-            newIssue.severity = $scope.PlSeverity;*/
-            rbseverityLevel = "$scope.PlSeverity == 1 ? 'low' : $scope.PlSeverity == 2 ? 'medium' : 'high'";
-            newIssue = {"pollution": $scope.PlSeverity,
-                       "pollutionLevel": rbseverityLevel};            
-            newRiverData.issues.push(newIssue);
+            rbseverityLevel = $scope.PlSeverity == 1 ? 'low' : $scope.PlSeverity == 2 ? 'medium' : 'high';            
+            newRiverData.pollution = $scope.PlSeverity;
+            newRiverData.pollutionLevel = rbseverityLevel;
         }
         /* end issue type and severity */
         
