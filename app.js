@@ -27,29 +27,75 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
 		$scope.rbusername = localStorage.getItem("rbusername");
 	}();
     $scope.allRivers = {
-            "rivers":[
-                {
-                    "name": "Bheema",
-                    "state": "Maharashtra",
-                    "city": "Pune",
-                    "encroachment": "1",
-                    "encroachmentLevel": 'low',
-                    "exploitation": "2",
-                    "exploitationLevel": 'medium',
-                    "status": "orange"
-                },
-                {
-                    "name": "Indrayani",
-                    "state": "Maharashtra",
-                    "city": "Pune",
-                    "pollution": "3",
-                    "pollutionLevel": 'high',
-                    "encroachment": "1",
-                    "encroachmentLevel": 'low',
-                    "status": "red"
-                },
-            ]
-    }
+	"rivers": [{
+			"name": "Mula Mutha",
+			"points": [{
+					"pointName": "Mhatre bridge",
+					"pointCity": "Pune",
+					"pointState": "Maharashtra",
+					"pointRecords": [{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "2",
+							"exploitationLevel": "medium",
+							"pollution": "3",
+							"pollutionLevel": "high",
+							"reportedBy": "Some User1",
+							"reportedDateTime": "31/07/2019 10:22:00",
+							"Description": "Highly polluted due to industrial waste",
+							"recordStatus": "red"
+						},
+						{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "2",
+							"exploitationLevel": "medium",
+							"pollution": "3",
+							"pollutionLevel": "high",
+							"reportedBy": "Some User2",
+							"reportedDateTime": "31/07/2019 11:22:00",
+							"Description": "Encroached by local people",
+							"recordStatus": "red"
+						}
+					],
+					"pointStatus": "red"
+				},
+				{
+					"pointName": "Lakdi pool",
+					"pointCity": "Pune",
+					"pointState": "Maharashtra",
+					"pointRecords": [{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "2",
+							"exploitationLevel": "medium",
+							"pollution": "1",
+							"pollutionLevel": "low",
+							"reportedBy": "Some User3",
+							"reportedDateTime": "31/07/2019 12:22:00",
+							"Description": "Exploited by people by motor pumps",
+							"recordStatus": "orange"
+						},
+						{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "1",
+							"exploitationLevel": "low",
+							"pollution": "1",
+							"pollutionLevel": "low",
+							"reportedBy": "Some User4",
+							"reportedDateTime": "31/07/2019 14:22:00",
+							"Description": "Highly polluted",
+							"recordStatus": "green"
+						}
+					],
+					"pointStatus": "orange"
+				}
+			],
+			"overallStatus": "red"
+		}
+	]
+}
 	$scope.saveRiverInfo = function(){
         var newRiverData = {};
         newRiverData.name = $scope.rbriverName;
