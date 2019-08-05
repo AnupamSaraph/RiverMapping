@@ -35,6 +35,9 @@
 .rbriverRow{
     margin-bottom: 10px;
 }
+#rbmap { 
+	height: 180px;
+}
 
 @media only screen and (max-width: 600px){
     .rbriverRow > div{

@@ -23,33 +23,121 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
 	$scope.rbriverLocation;
 	var msg;
 	
+
+	var mymap = L.map('rbmap').setView([51.505, -0.09], 13);
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	L.marker([51.5, -0.09]).addTo(mymap);
+
+	L.circle([51.508, -0.11], {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5,
+		radius: 500
+	}).addTo(mymap);
+
+	L.polygon([
+		[51.509, -0.08],
+		[51.503, -0.06],
+		[51.51, -0.047]
+	]).addTo(mymap);
+
+	function onMapClick(e) {
+		alert("You clicked the map at " + e.latlng);
+		console.log(e);
+		L.circle([e.latlng.lat, e.latlng.lng], {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5,
+			radius: 500
+		}).addTo(mymap);
+		
+	}
+
+mymap.on('click', onMapClick);
+	
 	var getUserData = function(){
 		$scope.rbusername = localStorage.getItem("rbusername");
+		
+		
 	}();
     $scope.allRivers = {
-            "rivers":[
-                {
-                    "name": "Bheema",
-                    "state": "Maharashtra",
-                    "city": "Pune",
-                    "encroachment": "1",
-                    "encroachmentLevel": 'low',
-                    "exploitation": "2",
-                    "exploitationLevel": 'medium',
-                    "status": "orange"
-                },
-                {
-                    "name": "Indrayani",
-                    "state": "Maharashtra",
-                    "city": "Pune",
-                    "pollution": "3",
-                    "pollutionLevel": 'high',
-                    "encroachment": "1",
-                    "encroachmentLevel": 'low',
-                    "status": "red"
-                },
-            ]
-    }
+	"rivers": [{
+			"name": "Mula Mutha",
+			"points": [{
+					"pointName": "Mhatre bridge",
+					"pointCity": "Pune",
+					"pointState": "Maharashtra",
+					"pointRecords": [{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "2",
+							"exploitationLevel": "medium",
+							"pollution": "3",
+							"pollutionLevel": "high",
+							"reportedBy": "Some User1",
+							"reportedDateTime": "31/07/2019 10:22:00",
+							"Description": "Highly polluted due to industrial waste",
+							"recordStatus": "red"
+						},
+						{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "2",
+							"exploitationLevel": "medium",
+							"pollution": "3",
+							"pollutionLevel": "high",
+							"reportedBy": "Some User2",
+							"reportedDateTime": "31/07/2019 11:22:00",
+							"Description": "Encroached by local people",
+							"recordStatus": "red"
+						}
+					],
+					"pointStatus": "red"
+				},
+				{
+					"pointName": "Lakdi pool",
+					"pointCity": "Pune",
+					"pointState": "Maharashtra",
+					"pointRecords": [{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "2",
+							"exploitationLevel": "medium",
+							"pollution": "1",
+							"pollutionLevel": "low",
+							"reportedBy": "Some User3",
+							"reportedDateTime": "31/07/2019 12:22:00",
+							"Description": "Exploited by people by motor pumps",
+							"recordStatus": "orange"
+						},
+						{
+							"encroachment": "1",
+							"encroachmentLevel": "low",
+							"exploitation": "1",
+							"exploitationLevel": "low",
+							"pollution": "1",
+							"pollutionLevel": "low",
+							"reportedBy": "Some User4",
+							"reportedDateTime": "31/07/2019 14:22:00",
+							"Description": "Highly polluted",
+							"recordStatus": "green"
+						}
+					],
+					"pointStatus": "orange"
+				}
+			],
+			"overallStatus": "red"
+		}
+	]
+}
 	$scope.saveRiverInfo = function(){
         var newRiverData = {};
         newRiverData.name = $scope.rbriverName;
