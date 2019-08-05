@@ -37,37 +37,37 @@
             <div class="col-lg-offset-1 col-lg-5">
                 <h2> Welcome {{rbusername}} </h2>
                 <p>River Name: </p>
-                <input type="text" id="rbriverName" ng-model="rbriverName"/>
+                <input type="text" id="rbriverName" class="rbRiverInput" ng-model="rbriverName"/>
                 <p>River Location: </p>
-                <input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
+               <!-- <input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
                 <button ng-click="getLocation()">Get current location</button>
                 <textarea id="rbriverLocationAuto">{{rbriverLocationAuto}}</textarea>
-                <div id="mapholder" ng-bind-html="rbusermap"></div>
-				<div id="rbmap"></div>
+                <div id="mapholder" ng-bind-html="rbusermap"></div> -->
+				<div id="rbmap" class="rbRiverInput"></div>
             </div>
         </div>
         
         
         <div class="row">
-            <div class="col-lg-offset-1 col-lg-5">
+            <div class="col-lg-offset-1 col-lg-2">
                 <p>Issues: </p>
-                <input type="checkbox" ng-model="exploitation">Exploitation<br>
-                <input type="checkbox" ng-model="encroachment">Encroachment<br>
-                <input type="checkbox" ng-model="pollution">Pollution
+                <input type="checkbox" ng-model="exploitation" class="rbmarginBottomMid">Exploitation<br>
+                <input type="checkbox" ng-model="encroachment" class="rbmarginBottomMid">Encroachment<br>
+                <input type="checkbox" ng-model="pollution" class="rbmarginBottomMid">Pollution
             </div>
             <div class="col-lg-5">
                 <p>Severity: </p>		
-                <input type="radio" ng-model="ExSeverity" value="1">Low
-                <input type="radio" ng-model="ExSeverity" value="2">Medium
-                <input type="radio" ng-model="ExSeverity" value="3">High<br>
+                <input type="radio" ng-model="ExSeverity" value="1" class="rbmarginBottomMid">Low
+                <input type="radio" ng-model="ExSeverity" value="2" class="rbmarginBottomMid">Medium
+                <input type="radio" ng-model="ExSeverity" value="3" class="rbmarginBottomMid">High<br>
                 
-                <input type="radio" ng-model="EnSeverity" value="1">Low
-                <input type="radio" ng-model="EnSeverity" value="2">Medium
-                <input type="radio" ng-model="EnSeverity" value="3">High<br>
+                <input type="radio" ng-model="EnSeverity" value="1" class="rbmarginBottomMid">Low
+                <input type="radio" ng-model="EnSeverity" value="2" class="rbmarginBottomMid">Medium
+                <input type="radio" ng-model="EnSeverity" value="3" class="rbmarginBottomMid">High<br>
                 
-                <input type="radio" ng-model="PlSeverity" value="1">Low
-                <input type="radio" ng-model="PlSeverity" value="2">Medium
-                <input type="radio" ng-model="PlSeverity" value="3">High
+                <input type="radio" ng-model="PlSeverity" value="1" class="rbmarginBottomMid">Low
+                <input type="radio" ng-model="PlSeverity" value="2" class="rbmarginBottomMid">Medium
+                <input type="radio" ng-model="PlSeverity" value="3" class="rbmarginBottomMid">High
             </div>
         </div>
 		<div class="row">

@@ -24,7 +24,7 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
 	var msg;
 	
 
-	var mymap = L.map('rbmap').setView([51.505, -0.09], 13);
+	var mymap = L.map('rbmap').setView([18.59, 73.78], 13);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -34,23 +34,19 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
 		id: 'mapbox.streets'
 	}).addTo(mymap);
 
-	L.marker([51.5, -0.09]).addTo(mymap);
+	
 
-	L.circle([51.508, -0.11], {
+	L.circle([18.59, 73.78], {
 		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 0.5,
 		radius: 500
 	}).addTo(mymap);
 
-	L.polygon([
-		[51.509, -0.08],
-		[51.503, -0.06],
-		[51.51, -0.047]
-	]).addTo(mymap);
+	
 
 	function onMapClick(e) {
-		alert("You clicked the map at " + e.latlng);
+		//alert("You clicked the map at " + e.latlng);
 		console.log(e);
 		L.circle([e.latlng.lat, e.latlng.lng], {
 			color: 'red',

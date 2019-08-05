@@ -1,6 +1,8 @@
 .rbRiversContainer{
     margin-left: 20px;
 }
+.rbRiverInput{
+	margin-bottom: 30px;
 }
 .button-continer{
 	margin-top: 10px;
@@ -8,6 +10,9 @@
 .rball-rivers-table{
     
     
+}
+.rbmarginBottomMid{
+	margin-bottom: 20px !important;
 }
 .rbtableHeader{
     color: aquamarine;
@@ -36,7 +41,7 @@
     margin-bottom: 10px;
 }
 #rbmap { 
-	height: 180px;
+	height: 300px;
 }
 
 @media only screen and (max-width: 600px){
