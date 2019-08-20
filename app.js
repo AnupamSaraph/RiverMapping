@@ -48,6 +48,7 @@ app.controller('RiverinfoController', function($scope, $sce, $http) {
 	function onMapClick(e) {
 		//alert("You clicked the map at " + e.latlng);
 		console.log(e);
+
 		L.circle([e.latlng.lat, e.latlng.lng], {
 			color: 'red',
 			fillColor: '#f03',
@@ -71,7 +72,10 @@ mymap.on('click', onMapClick);
 					"pointName": "Mhatre bridge",
 					"pointCity": "Pune",
 					"pointState": "Maharashtra",
+					"pointLat": "18.59",
+					"pointLong": "73.78",
 					"pointRecords": [{
+							"recordId": "1",
 							"encroachment": "1",
 							"encroachmentLevel": "low",
 							"exploitation": "2",
@@ -84,6 +88,7 @@ mymap.on('click', onMapClick);
 							"recordStatus": "red"
 						},
 						{
+							"recordId": "2",
 							"encroachment": "1",
 							"encroachmentLevel": "low",
 							"exploitation": "2",
@@ -102,7 +107,10 @@ mymap.on('click', onMapClick);
 					"pointName": "Lakdi pool",
 					"pointCity": "Pune",
 					"pointState": "Maharashtra",
+					"pointLat": "18.90",
+					"pointLong": "73.90",
 					"pointRecords": [{
+							"recordId": "3",
 							"encroachment": "1",
 							"encroachmentLevel": "low",
 							"exploitation": "2",
@@ -115,6 +123,7 @@ mymap.on('click', onMapClick);
 							"recordStatus": "orange"
 						},
 						{
+							"recordId": "2",
 							"encroachment": "1",
 							"encroachmentLevel": "low",
 							"exploitation": "1",
@@ -137,6 +146,13 @@ mymap.on('click', onMapClick);
 	$scope.saveRiverInfo = function(){
         var newRiverData = {};
         newRiverData.name = $scope.rbriverName;
+		newRiverData.points = [];
+		var point = {};
+		point.pointName = $scope.rbriverPointName;
+		point.pointRecords = [];
+		var record = {};
+		record.recordId = '1';
+		
         newRiverData.state = $scope.rbriverLocation;
         newRiverData.issues = [];
         
@@ -144,19 +160,21 @@ mymap.on('click', onMapClick);
         /* start issue type and severity */
         if($scope.exploitation){
             rbseverityLevel = $scope.ExSeverity == 1 ? 'low' : $scope.ExSeverity == 2 ? 'medium' : 'high';            
-            newRiverData.exploitation = $scope.ExSeverity;
-            newRiverData.exploitationLevel = rbseverityLevel;
+            record.exploitation = $scope.ExSeverity;
+            record.exploitationLevel = rbseverityLevel;
         }
         if($scope.encroachment){
             rbseverityLevel = $scope.EnSeverity == 1 ? 'low' : $scope.EnSeverity == 2 ? 'medium' : 'high';
-            newRiverData.encroachment = $scope.EnSeverity;
-            newRiverData.encroachmentLevel = rbseverityLevel;
+            record.encroachment = $scope.EnSeverity;
+            record.encroachmentLevel = rbseverityLevel;
         }
         if($scope.pollution){
             rbseverityLevel = $scope.PlSeverity == 1 ? 'low' : $scope.PlSeverity == 2 ? 'medium' : 'high';            
-            newRiverData.pollution = $scope.PlSeverity;
-            newRiverData.pollutionLevel = rbseverityLevel;
+            record.pollution = $scope.PlSeverity;
+            record.pollutionLevel = rbseverityLevel;
         }
+		point.pointRecords.push(record);
+		newRiverData.points.push(point);
         /* end issue type and severity */
         
         /* start status */
@@ -168,11 +186,35 @@ mymap.on('click', onMapClick);
                  newRiverData.status = "green";
               }
         /* end status */
+		$scope.riverExists = 0;
+		$scope.pointExists = 0;
+		angular.forEach($scope.allRivers.rivers, function(value, key) {
+			if(value.name == newRiverData.name){
+				alert("river already exists");
+				angular.forEach(value.points, function(value2, key2) {
+					if($scope.pointExists == 0){
+						if(point.pointName == value2.pointName){
+							alert("point also already exists");
+							value2.pointRecords.push(record);
+							$scope.pointExists = 1;
+						}
+					}
+					console.log(key + ': ' + value.name);
+					console.log(key2 + ': ' + value2.pointName);
+				});
+				if($scope.pointExists == 0){
+					value.points.push(point);
+				}
+				$scope.riverExists = 1;
+			}
+		});
+        if($scope.riverExists == 0){
+			alert("River does not exist");
+			$scope.allRivers.rivers.push(newRiverData);
+		}
         
         
-        
-        $scope.allRivers.rivers.push(newRiverData);
-        console.log("$scope.newRiverData.." + JSON.stringify(newRiverData));
+        console.log("!!!!!!!!!!$scope.newRiverData.." + JSON.stringify($scope.allRivers.rivers));
 	}
     
     $scope.getLocation = function() {
