@@ -15,7 +15,8 @@
 	margin-bottom: 20px !important;
 }
 .rbtableHeader{
-    color: aquamarine;
+    color: #0a5d43;
+	font-weight: bold;
 }
 .rball-rivers-table-header{
     font-size: 24px;

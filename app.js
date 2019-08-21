@@ -173,7 +173,18 @@ mymap.on('click', onMapClick);
             record.pollution = $scope.PlSeverity;
             record.pollutionLevel = rbseverityLevel;
         }
+		
+		/* start status */
+		if($scope.ExSeverity == 3 || $scope.EnSeverity == 3 || $scope.PlSeverity == 3){
+            record.recordStatus = "red";
+        }else if($scope.ExSeverity == 2 || $scope.EnSeverity == 2 || $scope.PlSeverity == 2){
+                 record.recordStatus = "orange";
+              }else if($scope.ExSeverity == 1 || $scope.EnSeverity == 1 || $scope.PlSeverity == 1){
+                 record.recordStatus = "green";
+              }
+        /* end status */
 		point.pointRecords.push(record);
+		point.pointStatus = record.recordStatus;
 		newRiverData.points.push(point);
         /* end issue type and severity */
         
@@ -194,15 +205,36 @@ mymap.on('click', onMapClick);
 				angular.forEach(value.points, function(value2, key2) {
 					if($scope.pointExists == 0){
 						if(point.pointName == value2.pointName){
+							var green = 0; orange = 0; red = 0;
 							alert("point also already exists");
 							value2.pointRecords.push(record);
 							$scope.pointExists = 1;
+							angular.forEach(value2.pointRecords, function(value3, key3) {
+								console.log("@@@@@"+JSON.stringify(value3.recordStatus));
+								if(value3.recordStatus == 'green'){
+									green++;
+								}else if(value3.recordStatus == 'orange'){
+									orange++;
+								}else if(value3.recordStatus == 'red'){
+									red++;
+								}
+							});
+							if(green > orange && green > red){
+								value2.pointStatus = 'green';
+							}else if(orange > green && orange > red){
+								value2.pointStatus = 'orange';
+							}else if(red > green && red > orange){
+								value2.pointStatus = 'red';
+							}else{
+								value2.pointStatus = 'orange';
+							}
 						}
 					}
 					console.log(key + ': ' + value.name);
 					console.log(key2 + ': ' + value2.pointName);
 				});
 				if($scope.pointExists == 0){
+					
 					value.points.push(point);
 				}
 				$scope.riverExists = 1;
