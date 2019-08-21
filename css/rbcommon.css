@@ -9,7 +9,16 @@
 }
 .rball-rivers-table{
     
-    
+	
+}
+.rbRequired:before{
+	content:"*";
+    color:red;
+}
+.rbBorder{
+	margin-top: 30px;
+	padding: 10px;
+	border: 1px solid grey;
 }
 .rbmarginBottomMid{
 	margin-bottom: 20px !important;

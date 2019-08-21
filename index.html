@@ -36,9 +36,9 @@
         <div class="row">
             <div class="col-lg-offset-1 col-lg-5">
                 <h2> Welcome {{rbusername}} </h2>
-                <p>River Name: </p>
+                <p class="rbRequired">River Name: </p>
                 <input type="text" id="rbriverName" class="rbRiverInput" ng-model="rbriverName"/>
-				<p>River Point: </p>
+				<p class="rbRequired">River Point: </p>
                 <input type="text" id="rbriverPoint" class="rbRiverInput" ng-model="rbriverPointName"/>
                 <p>River Location: </p>
                <!-- <input type="text" id="rbriverLocation" ng-model="rbriverLocation"/> OR
@@ -80,28 +80,52 @@
             </div>
         </div>
         <div class="row rball-rivers-table-header">
-            <div class="col-lg-offset-1 rbtableHeader">All Rivers Summary</div>            
+            <div class="col-lg-offset-1 rbtableHeader">All Rivers Summary</div> <div class="col-lg-offset-1 rbtableHeader" style="font-size: 16px; color: #f5a325">(Click on river name to see points on that river)   </div>        
         </div>
+		<div class="rbBorder col-lg-offset-1">
         <div class="row rball-rivers-table">
-            <div class="col-lg-offset-1 col-lg-2 hidden-xs col-xs-3 rbtableHeader">Name</div>
-            <div class="col-lg-2 col-xs-4 hidden-xs rbtableHeader">State</div>
+            <div class="col-lg-2 hidden-xs col-xs-3 rbtableHeader">Name</div>
+            <!-- <div class="col-lg-2 col-xs-4 hidden-xs rbtableHeader">State</div>
             <div class="col-lg-1 col-xs-1 hidden-xs rbtableHeader">Exploitation</div>
             <div class="col-lg-1 col-xs-1 hidden-xs rbtableHeader">Encroachment</div>
-            <div class="col-lg-1 col-xs-1 hidden-xs rbtableHeader">Pollution</div>
+            <div class="col-lg-1 col-xs-1 hidden-xs rbtableHeader">Pollution</div> -->
             <div class="col-lg-3 col-sx-1 hidden-xs rbtableHeader">Overall Status</div>
         </div>
         <div ng-repeat="river in allRivers.rivers" class="row rbriverRow">
-            <div class="col-lg-offset-1 col-lg-2 col-xs-3">{{river.name}}</div>
-            <div class="col-lg-2 hidden-xs col-xs-4">{{river.state}}</div>
+            <div class="col-lg-2 col-xs-3" data-toggle="modal" data-target="#rbPointPopup">{{river.name}}</div>
+            <!-- <div class="col-lg-2 hidden-xs col-xs-4">{{river.state}}</div>
             <div class="col-lg-1 col-xs-2">{{river.exploitationLevel}}</div>
             <div class="col-lg-1 col-xs-2">{{river.encroachmentLevel}}</div>
-            <div class="col-lg-1 col-xs-2">{{river.pollutionLevel}}</div>
-            <div class="col-lg-3 col-xs-1 rbstatus rbstatusRed" ng-if="river.status == 'red'"></div>
-            <div class="col-lg-3 col-xs-1 rbstatus rbstatusOrange" ng-if="river.status == 'orange'"></div>
-            <div class="col-lg-3 col-xs-1 rbstatus rbstatusGreen" ng-if="river.status == 'green'"></div>
-            <div class="col-lg-3 col-xs-1 rbstatus rbstatusUnknown" ng-if="river.status == ''"></div>
+            <div class="col-lg-1 col-xs-2">{{river.pollutionLevel}}</div> -->
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusRed" ng-if="river.overallStatus == 'red'"></div>
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusOrange" ng-if="river.overallStatus == 'orange'"></div>
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusGreen" ng-if="river.overallStatus == 'green'"></div>
+            <div class="col-lg-3 col-xs-1 rbstatus rbstatusUnknown" ng-if="river.overallStatus == ''"></div>
             
         </div>
+		</div>
+		
+		<!-- start point popup -->
+		<div id="rbPointPopup" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">River Points</h4>
+			  </div>
+			  <div class="modal-body">
+				<p>River points info will be shown here</p>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
+
+		  </div>
+		</div>
+		<!--end point popup -->
 	</div>
 </body>
 </html>

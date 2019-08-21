@@ -202,6 +202,7 @@ mymap.on('click', onMapClick);
 		angular.forEach($scope.allRivers.rivers, function(value, key) {
 			if(value.name == newRiverData.name){
 				alert("river already exists");
+				
 				angular.forEach(value.points, function(value2, key2) {
 					if($scope.pointExists == 0){
 						if(point.pointName == value2.pointName){
@@ -230,18 +231,43 @@ mymap.on('click', onMapClick);
 							}
 						}
 					}
+					
 					console.log(key + ': ' + value.name);
 					console.log(key2 + ': ' + value2.pointName);
 				});
 				if($scope.pointExists == 0){
-					
+				alert("but point is new");
 					value.points.push(point);
+					var greenPoint = 0; orangePoint = 0; redPoint = 0;
+					angular.forEach(value.points, function(value, key) {
+						if(value.pointStatus == 'green'){
+							greenPoint++;
+						}else if(value.pointStatus == 'orange'){
+							orangePoint++;
+						}else if(value.pointStatus == 'red'){
+							redPoint++;
+						}
+					});
+					if(greenPoint > orangePoint && greenPoint > redPoint){
+					alert("greenPoint" + greenPoint +"orangePoint" +orangePoint +"redPoint"+ redPoint);
+						value.overallStatus = 'green';
+					}else if(orangePoint > greenPoint && orangePoint > redPoint){
+					alert("greenPoint" + greenPoint +"orangePoint" +orangePoint +"redPoint"+ redPoint);
+						value.overallStatus = 'orange';
+					}else if(redPoint > greenPoint && redPoint > orangePoint){
+					alert("greenPoint" + greenPoint +"orangePoint" +orangePoint +"redPoint"+ redPoint);
+						value.overallStatus = 'red';
+					}else{
+					alert("greenPoint" + greenPoint +"orangePoint" +orangePoint +"redPoint"+ redPoint);
+						value.overallStatus = 'orange';
+					}
 				}
 				$scope.riverExists = 1;
 			}
 		});
         if($scope.riverExists == 0){
 			alert("River does not exist");
+			newRiverData.overallStatus = record.recordStatus;
 			$scope.allRivers.rivers.push(newRiverData);
 		}
         
