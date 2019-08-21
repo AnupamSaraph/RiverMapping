@@ -75,7 +75,7 @@
 		<div class="row">
             <div class="col-lg-offset-1 col-lg-5">
                 <div class="button-continer">
-                    <button ng-click="saveRiverInfo()"> Submit </button>
+                    <button ng-click="saveRiverInfo()" ng-disabled="!rbriverName || !rbriverPointName || (!ExSeverity && !EnSeverity && !PlSeverity)"> Submit </button>
                 </div>
             </div>
         </div>

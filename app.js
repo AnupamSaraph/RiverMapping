@@ -181,7 +181,9 @@ mymap.on('click', onMapClick);
                  record.recordStatus = "orange";
               }else if($scope.ExSeverity == 1 || $scope.EnSeverity == 1 || $scope.PlSeverity == 1){
                  record.recordStatus = "green";
-              }
+              }else{
+				record.recordStatus = "orange";
+			  }
         /* end status */
 		point.pointRecords.push(record);
 		point.pointStatus = record.recordStatus;
